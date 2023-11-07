@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+	<div class="container p-5">	
+	
+		<div class="row">
+			<div class="col-md-10 offset-md-1">
+				<div class="card">
+					<div class="card-body">
+						<p class="text-center fs-3">Email Sending App</p>
+						
+						<th:block th:if="${session.msg}">
+						<p>[[${session.msg}]]</p>
+						
+						<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+						</th:block>
+						
+						<form th:action="@{/sendemail}" method="post">
+							
+							<div class="mb-3">
+								<label>Enter Email Id To:</label>
+								<input type = "text" name="to" class="form-control">
+							</div>
+							
+							<div class="mb-3">
+								<label>Subject:</label>
+								<input type = "text" name="subject" class="form-control">
+							</div>
+							
+							<div class="mb-3">
+								<label>Message:</label>
+								<textarea name="message" rows="5" cols="" class="form-control"></textarea>
+							</div>
+						
+							<button class = "btn btn-primary col-md-12">Send</button>
+						
+						
+						
+						</form>							
+						
+					
+					</div>
+				</div>
+			
+			</div>
+		
+		</div>
+	</div>
+		
+	
+</body>
+</html>
