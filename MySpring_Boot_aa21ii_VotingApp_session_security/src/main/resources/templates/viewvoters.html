@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <title th:text="${title}">Title</title>
+	
+	
+</head>
+<body>
+
+<!-- Navbar -->
+
+  <ul>
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <li><a th:href="@{/adminhome}">Admin Home</a></li>
+  <li><a th:href="@{/viewadmin}">Admin Details</a></li>
+  <li><a style="text-decoration: underline;">Voters Details</a></li>
+  <li><a th:href="@{/viewcandidates}">Candidates Details</a></li>
+  <li><a th:href="@{/}">Admin Logout</a></li>
+  
+</ul>
+
+    <!-- Navbar End -->
+
+	<section class="center">
+	
+
+
+
+		
+		
+<h2>All Voters Details</h2>
+	<div th:if=${session.msg}>
+		<h3 th:text="${session.msg}" style="color:red"></h3>
+   		<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
+   	</div>
+
+		
+	
+						
+	  <table  border = '1' align='center'>
+		<thead>					
+			<tr>
+				<th>Id </th>
+			    <th>Name </th>
+			    <th>Password </th>
+			    <th>Email Id </th>
+			    <th>Phone No </th>
+				<th>Actions </th>
+			</tr>	
+		</thead>
+		<body>
+			<tr th:each="e: ${vtr}">
+      			<th th:text="${e.id}"></th>
+      			<th th:text="${e.name}"></th>
+      			<th th:text="${e.password}"></th>
+      			<th th:text="${e.email}"></th>
+      			<th th:text="${e.phone}"></th>
+      			<th>
+      				<a class="btn btn-sm btn-dark text-white" th:href="@{/editvoter/{id}(id=${e.id})}"><img th:src="@{/image/update.png}" height="25px" alt="Update"></a> &ensp;
+      				<a class="btn btn-sm btn-dark text-white" th:href="@{/deletevoter/{id}(id=${e.id})}"><img th:src="@{/image/delete.jpg}" height="25px" alt="Delete"></a>
+      			</th>    
+   			</tr>
+		
+		</body>				
+       </table>
+		
+		
+		
+	
+
+
+
+
+	<br>
+	
+	</section>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+	
+
+
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+  <!-- Navbar -->
+
+  <ul>
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <li><a style="text-decoration: underline;">Voter Home</a></li>
+  <li><a th:href="@{/}">Voter Logout</a></li>
+</ul>
+
+    <!-- Navbar End -->
+	
+<section class="center">
+		<form th:action = "@{/addcandidates}" method ="post" th:object="${vtr}">
+
+<div class="container">
+  
+  <div class="layout">
+
+		<div class = "col col-main">
+
+
+<!--  -->
+
+
+		
+		<!-- Table -->
+		
+		<table>
+						<h2>Voter Details:</h2>
+							<img th:src="@{/image/voter.png}" height="125px" alt="Voter Icon">
+							
+					</table>
+						
+						<table border = '1' align='center'>
+							
+							<tr>
+								<th>Id: </th>
+							<th> <h4 th:text="${vtr.id}"></h4></th>
+							</tr>
+							
+							<tr>
+								<th>Name: </th>
+								<th> <h4 th:text="${vtr.name}"></h4></th>
+							</tr>
+							
+							
+						
+								<tr>
+									<th>Email Id: </th>
+									<th><h4 th:text="${vtr.email}"></h4> </th>
+								</tr>
+					
+								<tr>
+									<th>Phone No.: </th>
+									<th><h4 th:text="${vtr.phone}"></h4> </th>
+								</tr>
+
+								<tr>
+									<th>Status: </th>
+									<th><h4 th:text="${status}"></h4> </th>
+								</tr>
+				
+						</table>
+		
+		<!--  -->
+		
+
+
+</div>
+	
+	<div class = "col col-complementary">
+	
+
+
+
+<!--  -->
+		
+		
+		
+		<div th:if=${session.msg}>
+			<h3 th:text="${session.msg}" style="color:red"></h3>
+   			<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
+   		</div>
+
+   		
+ <h4 style="color:red" th:text="${vtr.name}"> </h4> 
+
+	Do Voting<br>
+	
+	<input th:value="${vtr.email}" name = "email" type="hidden" >
+ <br>
+ <input type="radio" name="candidate"  value ="candidate1" required>Candidate 1  <br><br>
+  <input type="radio" name="candidate"  value = "candidate2" required>Candidate 2 <br><br>
+  <input type="radio" name="candidate"  value = "candidate3" required>Candidate 3 <br><br>
+  <input type="radio" name="candidate"  value = "candidate4" required>Candidate 4 <br><br>
+    
+    <br>
+ 
+
+
+<input type = "submit" value="Vote">
+
+
+<!--  -->
+
+</div>
+</div>
+</div>
+
+
+
+</form>
+<br>
+		
+	
+	</section>
+</body>
+</html>
