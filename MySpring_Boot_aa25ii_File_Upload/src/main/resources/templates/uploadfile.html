@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<br>
+	<div style="text-align: center">
+	<h2>File Upload</h2>
+	
+	<form th:action="@{/processuplodfile}" enctype="multipart/form-data" method="POST" >
+		
+		<!-- message box -->
+		<div th:if="${session.message}" class="container">
+		 <div style="color:red">
+ 			<span th:text="${session.message}"></span>
+		</div>
+		
+		<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+		</div>
+		<!-- message box end -->
+		
+		
+	Name: <input type = "text" name = "name" required>
+	<br><br>
+	File: <input type = "file" name = "image" required>
+	<br><br>
+	<input type = "submit" value="Submit">
+	
+	 
+	</form>	
+	
+	</div>
+	
+</body>
+</html>
