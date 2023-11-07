@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Title</title>
+</head>
+<body>
+	
+	<div align="center">
+	<h1>Signup</h1>
+	
+					<div th:if="${session.message}">
+						<!-- for showing -->
+						<p style="color:red" class="text-center" th:text="${session.message}"></p>
+						<!-- for removing -->
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block> 
+					</div>
+					
+					
+	<form th:action="@{/saveuser}" th:object="${user}" method ="post">
+		
+		<table border ="0" cellpadding ="10">
+		<tr>
+			<td><b>User Name:</b></td>
+			<td><input type = "text" name="username" /></td>
+		</tr>
+		<tr>
+			<td><b>User Password:</b></td>
+			<td><input type= "password" name="password"/></td>
+		</tr>
+		<tr>
+			<td><b>User Role:</b></td>
+			<td>
+			<h3>
+				<input type="radio" name="role1"  value ="USER" >USER  <br><br>
+				<input type="radio" name="role2"  value ="CREATOR" >CREATOR  <br><br>
+				<input type="radio" name="role3"  value ="EDITOR" >EDITOR  <br><br>
+				<input type="radio" name="role4"  value ="ADMIN" >ADMIN  
+			</h3>
+				<span style="color:green">You can also select multiple Roles if you want </span><br><br>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan = "2"><button type = "submit">Save</button></td>
+	
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+			<br>
+			<br>
+			<a th:href = "@{/}"><b>Back</b></a>
+			</td>
+		</tr>
+		
+		</table>	
+		
+	
+	</form>
+	</div>
+	
+</body>
+</html>
