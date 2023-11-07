@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+	ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+	
+table, th, td {
+  border: 1px solid #ddd;
+    text-align: left;
+   width: 50%;
+}
+th, td {
+  padding: 15px;
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}	
+
+nav ul {
+    display: inline-block;
+}
+
+	
+	</style>
+</head>
+<body>
+<br>
+
+	
+
+	<div style="text-align: center">
+		
+		<a th:href="@{/}">Home</a> &ensp;  <a th:href="@{/0}">View Contacts</a>
+
+		<h1>Contacts List</h1>
+		<br>
+		
+		<table class="center">
+			  <thead>
+			    <tr>
+			      <th scope="col">Id</th>
+			      <th scope="col">Name</th>
+			      <th scope="col">Email</th>
+			      <th scope="col">Phone</th>
+			      
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="c : ${contacts}">
+			      <th scope="row" th:text="${'C-'+c.cid}"></th>
+			      <td th:text="${c.cname}"></td>
+			      <td th:text="${c.cemail}"></td>
+			      <td th:text="${c.cphone}"></td>
+			     
+			    </tr>
+			 
+			  </tbody>
+		</table>
+		<br>
+		<!--Pagination  -->
+
+			<nav class="center">
+			
+			  <ul>
+			  
+			    <li th:if="${currentPage != 0}" ><a th:href="@{'/'+${currentPage-1}}">Previous</a></li>
+			  
+				<!-- Classappend   <li th:classappend="${currentPage==i-1?'active':''}" th:each="i: ${#numbers.sequence(1,totalPages)}" ><a th:href="@{'/'+${i-1}}" ><span th:text="${i}"></span></a></li> -->
+			    
+			    <li th:styleappend="${currentPage==i-1?'border:2px solid':''}" th:each="i: ${#numbers.sequence(1,totalPages)}" ><a th:href="@{'/'+${i-1}}" ><span th:text="${i}"></span></a></li>
+			 
+			    <li th:if="${currentPage+1 != totalPages}" ><a th:href="@{'/'+${currentPage+1}}">Next</a></li>
+			  </ul>
+			</nav>
+			
+		<!--Pagination End  -->		
+		
+		
+	
+		</div>
+		
+	
+</body>
+</html>
