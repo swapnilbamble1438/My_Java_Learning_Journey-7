@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<div align = "center">
+	
+<form th:action = "@{/dologin}" method = "post">
+
+<h1>Signin</h1>
+		
+		<div th:if="${param.error}" style="color:red">
+          Invalid Username or Password <br><br>
+        </div>
+                            
+         <div th:if="${param.logout}" style="color:red">
+           You have been logged out <br><br>
+          </div>
+                            
+   		
+
+Username: <input type = "text" name = "username" placeholder="Username" required><br><br>
+
+Password: <input type = "password" name= "password" placeholder="Password" required><br><br>
+
+<input type = "submit" value="Signin">
+<br>
+<br>
+	<a th:href = "@{/adduser}">Add New User</a>
+
+</form>
+	<br>	
+	<p>
+	Role Base Authorization Application<br>
+ In this Application there are four Roles: <br>
+ 1)USER : he can only view the data <br>
+ 2)CREATOR : he can only add new data<br>
+ 3)EDITOR : he can only edit existing data<br>
+ 4)ADMIN : he can view,add,edit,delete the data<br>
+ <br>
+ In this application<br>
+ thymeleaf-extras-springsecurity5 dependency<br>
+ has been used.<br>
+ 
+ <br>
+ Try Login in using: <br>
+	 Username   |   Password <br>
+	------------|------------<br>
+	 user       |    user<br>
+	 creator    |    creator<br>
+	 editor     |    editor<br>
+	 admin      |    admin<br>
+	 <br>
+	
+	
+
+	
+	</p>
+	
+	<br>
+	</div>
+</body>
+</html>
