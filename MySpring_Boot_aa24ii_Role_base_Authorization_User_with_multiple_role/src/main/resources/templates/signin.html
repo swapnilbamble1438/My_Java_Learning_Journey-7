@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<div align = "center">
+	
+<form th:action = "@{/dologin}" method = "post">
+
+<h1>Signin</h1>
+		
+		<div th:if="${param.error}" style="color:red">
+          Invalid Username or Password <br><br>
+        </div>
+                            
+         <div th:if="${param.logout}" style="color:red">
+           You have been logged out <br><br>
+          </div>
+                            
+   		
+
+<b>Username:</b> <input type = "text" name = "username" placeholder="Username" required><br><br>
+
+<b>Password:</b> <input type = "password" name= "password" placeholder="Password" required><br><br>
+
+<input type = "submit" value="Signin">
+<br>
+<br>
+	<h3><a th:href = "@{/adduser}">Signup</a></h3>
+
+</form>
+	<br>	
+	<p>
+<h2>	Role Base Authorization Application</h2>
+ <h3>In this Application there are four Roles:</h3>
+ 
+ <table border ="0" cellpadding ="10">
+ 
+ <tr> 
+	 <td>
+	 	<b>USER:</b>
+	 </td>
+ 	 <td>
+ 	 	 can only <b style="color:green">View</b> the data
+ 	 </td>
+ </tr>
+ 	
+ <tr>
+ 	<td>
+ 		<b>CREATOR:</b>
+ 	</td>
+ 	<td>
+ 	  	can only <b style="color:green">Add</b> new data
+ 	</td>
+ </tr>
+ 
+ <tr>
+ 	<td>
+ 		<b>EDITOR:</b>
+ 	</td>  
+ 	<td>
+ 		can only <b style="color:green">Edit</b> existing data
+ 	</td>
+ </tr>
+ 
+ <tr>
+ 	<td>
+ 		<b>ADMIN:</b>
+ 	</td>
+ 	<td>
+ 		can <b style="color:green">View, Add, Edit, Delete</b> the data
+ 	</td>
+ </tr>
+ 
+ </table>
+ 
+ <br>
+ <b>In this application<br>
+ thymeleaf-extras-springsecurity5 dependency<br>
+ has been used.</b><br>
+ 
+
+	
+	
+
+	
+	</p>
+	
+	<br>
+	</div>
+</body>
+</html>

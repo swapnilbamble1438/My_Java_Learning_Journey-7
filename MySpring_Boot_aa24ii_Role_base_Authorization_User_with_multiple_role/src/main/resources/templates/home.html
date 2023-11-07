@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8" />
+	<title>Student Information</title>
+</head>
+<body>
+	
+	<div align = "center">
+		<h1>Student List</h1>
+		
+		<div sec:authorize="isAuthenticated()">
+			Welcome <b><span sec:authentication="name">Username</span></b>&nbsp;	
+			<i><span sec:authentication="principal.authorities">Roles</span></i>
+		</div>
+		
+		<form th:action="@{/logout}" method="post">
+			<input type = "submit" value="Logout">
+		</form>
+		
+		
+		<div sec:authorize="hasAnyAuthority('CREATOR','ADMIN')">
+			<a th:href = "@{/addstudent}">Add New Student</a>
+		</div>
+		<br><br>
+		<table border = "1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Student Id</th>
+					<th>Student Name</th>
+					<th>Student City</th>
+					<th sec:authorize="hasAnyAuthority('EDITOR','ADMIN')">Action</th>
+				
+					
+					
+				</tr>
+			</thead>	
+			
+			<tbody>
+				<tr th:each="student : ${student}">
+					<td th:text="${student.sid}">Student Id</td>
+					<td th:text="${student.sname}">Student Name</td>
+					<td th:text="${student.scity}">Student City</td>
+					<td sec:authorize="hasAnyAuthority('EDITOR','ADMIN')">
+						<div sec:authorize="hasAnyAuthority('EDITOR','ADMIN')">
+							<a th:href="@{'/edit/'+${student.sid}}">Edit</a>
+						</div>
+						&nbsp;&nbsp;&nbsp;
+						<div sec:authorize="hasAnyAuthority('ADMIN')">
+							<a th:href="@{'/delete/'+${student.sid}}">Delete</a>
+						</div>	
+					</td>
+				</tr>	
+			</tbody>	
+		</table>
+	</div>
+	
+</body>
+</html>
