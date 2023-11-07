@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+  <!-- Navbar -->
+
+  <ul>
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <li><a style="text-decoration: underline;">Voter Home</a></li>
+  <li><a th:href="@{/}">Voter Logout</a></li>
+</ul>
+
+    <!-- Navbar End -->
+	
+<section class="center">
+		<form th:action = "@{/addcandidates}" method ="post" th:object="${vtr}">
+
+		<h1>Voter Home</h1>
+		
+		
+		<div th:if=${session.msg}>
+			<h3 th:text="${session.msg}" style="color:red"></h3>
+   			<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
+   		</div>
+   		
+   		
+   		
+
+   		
+ <h4 style="color:red" th:text="${vtr.name}"> </h4> 
+
+	Do Voting<br>
+	
+	<input th:value="${vtr.email}" name = "email" type="hidden" >
+ <br>
+ <input type="radio" name="candidate"  value ="candidate1" required>Candidate 1  <br><br>
+  <input type="radio" name="candidate"  value = "candidate2" required>Candidate 2 <br><br>
+  <input type="radio" name="candidate"  value = "candidate3" required>Candidate 3 <br><br>
+  <input type="radio" name="candidate"  value = "candidate4" required>Candidate 4 <br><br>
+    
+    <br>
+ 
+
+
+<input type = "submit" value="Vote">
+
+</form>
+<br>
+		
+	
+	</section>
+</body>
+</html>
