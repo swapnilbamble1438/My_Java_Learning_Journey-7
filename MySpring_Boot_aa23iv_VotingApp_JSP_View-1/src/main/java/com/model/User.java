@@ -1,35 +1,60 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Voters")
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String password;
 	private String email;
 	private int phone;
-	private String role;
 	
-	public User() {
+	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "voters_roles",
+			joinColumns = {@JoinColumn(name = "vid")},
+			inverseJoinColumns = {@JoinColumn(name = "rid")}
+			)
+	List<Role> roles = new ArrayList<>();
+	
+	public User()
+	{
 		
 	}
-
-	public User(int id, String name, String password, String email, int phone,String role) {
+	
+public User(int id,String name, String password, String email, int phone, List<Role> roles) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
-		this.role = role;
+		this.roles = roles;
+	}
+
+	public User(String name, String password, String email, int phone, List<Role> roles) {
+		
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+		this.roles = roles;
 	}
 
 	public int getId() {
@@ -72,26 +97,24 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getRole() {
-		return role;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", phone=" + phone
-				+ ", role=" + role + "]";
+				+ ", roles=" + roles + "]";
 	}
+
 	
 	
 	
-	
-	
-	
-	
+
 	
 
 }
