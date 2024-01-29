@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+
+	
+<form th:action = "@{/dologin}" method = "POST">
+<div style="text-align: center">
+
+<h1>Signin</h1>
+		
+	  	<div th:if="${param.error}" style="color:red">
+          Invalid username or password <br><br>
+        </div>
+                            
+         <div th:if="${param.logout}" style="color:red">
+           You have been logged out <br><br>
+          </div>
+          
+                            
+   		
+
+Username: <input type = "text" name = "username" placeholder="Enter Your Username" required><br><br>
+
+Password: <input type = "text" name= "password" placeholder="Enter Your Password" required><br><br>
+
+<input type = "submit" value="Signin">
+
+</div>
+</form>
+
+</body>
+</html>

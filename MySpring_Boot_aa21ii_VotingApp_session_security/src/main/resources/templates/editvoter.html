@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <title th:text="${title}">Title</title>
+	
+	
+</head>
+<body>
+
+<!-- Navbar -->
+
+  <ul>
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <li><a th:href="@{/adminhome}">Admin Home</a></li>
+  <li><a th:href="@{/viewadmin}">Admin Details</a></li>
+  <li><a th:href="@{/viewvoters}">Voters Details</a></li>
+  <li><a th:href="@{/viewcandidates}">Candidates Details</a></li>
+  <li><a th:href="@{/}">Admin Logout</a></li>
+  
+</ul>
+
+    <!-- Navbar End -->
+
+	<section class="center">
+	
+
+
+
+		
+		
+<h2>Update Voter Details</h2>
+	<div th:if=${session.msg}>
+		<h3 th:text="${session.msg}" style="color:red"></h3>
+   		<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
+   	</div>
+
+		
+	
+	<form th:action="@{/updatevoter}" method="post" th:object="${vtr}">
+    					
+    	<input type="hidden" th:value="${vtr.id}" name="id">
+    					
+    	Enter Name:	<input type="text" name="name" th:value="${vtr.name}" required><br><br>
+    					
+    	Enter Password: <input type="text" name="password" th:value="${vtr.password}" required><br><br>
+    	
+    	Enter Email: <input type="text" name="email" th:value="${vtr.email}" required><br><br>
+    	
+    	Enter Password: <input type="number" name="phone" th:value="${vtr.phone}" required><br><br>
+    					
+    	<input type = "submit" value="Update">
+    				
+    </form>
+	 
+		
+		
+		
+	
+
+
+
+
+	<br>
+	
+	</section>
+</body>
+</html>

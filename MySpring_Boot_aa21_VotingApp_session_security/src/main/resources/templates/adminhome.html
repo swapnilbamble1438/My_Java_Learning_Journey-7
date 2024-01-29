@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="UTF-8" />
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <title th:text="${title}">Title</title>
+	
+	
+</head>
+<body>
+
+<!-- Navbar -->
+
+  <ul>
+  <li><a class="active" th:href="@{/}">Home</a></li>
+  <li><a style="text-decoration: underline;">Admin Home</a></li>
+  <li><a th:href="@{/}">Admin Logout</a></li>
+  
+</ul>
+
+    <!-- Navbar End -->
+
+	<section class="center">
+	
+<form th:action="@{/}" method ="post" th:object="${vtr}">
+
+
+
+		
+		
+<h2>Welcome Admin</h2>
+<div th:if=${session.msg}>
+			<h3 th:text="${session.msg}" style="color:red"></h3>
+   			<div th:text="${@sessionUtilityBean.removeVerificationMessageFromSession()}"></div>
+   		</div>
+
+		
+		
+		<h3>Candidate 1 : Total Votes = <b style="color: limegreen"><span th:text="${c1}"></span></b></h3>
+		<h3>Candidate 2 : Total Votes = <b style="color: limegreen"><span th:text="${c2}"></span></b></h3>
+		<h3>Candidate 3 : Total Votes = <b style="color: limegreen"><span th:text="${c3}"></span></b></h3>
+		<h3>Candidate 4 : Total Votes = <b style="color: limegreen"><span th:text="${c4}"></span></b></h3>
+		
+		
+		
+	
+
+<!--  -->
+
+
+</form>
+	<br>
+	
+	</section>
+</body>
+</html>
